@@ -89,3 +89,4 @@ fi
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=2'
 
 if [ "$TMUX" = "" ]; then tmux; fi
+alias vim="nvim"
