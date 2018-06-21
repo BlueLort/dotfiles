@@ -88,5 +88,5 @@ fi
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=2'
 
-if [ "$TMUX" = "" ]; then tmux; fi
+if [ "$TMUX" = "" ]; then tmux -2; fi
 alias vim="nvim"
