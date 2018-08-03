@@ -39,6 +39,8 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'maxbrunsfeld/vim-yankstack'
 
+Plug 'tell-k/vim-autopep8'
+
 " Color schemes
 Plug 'crucerucalin/peaksea.vim' 
 Plug 'sjl/badwolf'
