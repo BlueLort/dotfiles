@@ -143,12 +143,18 @@ nnoremap <silent> <leader>d :GitGutterToggle<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>[ :YcmCompleter GoTo<cr>
+nmap <leader>] :YcmCompleter GoTo<cr>
+nmap <leader>[ :YcmCompleter GetDoc<cr>
 nmap <leader>J :lnext<cr>
 nmap <leader>K :lprevious<cr>
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_always_populate_location_list = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Rust
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rust_clip_command = 'xclip -selection clipboard'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack searching and cope displaying

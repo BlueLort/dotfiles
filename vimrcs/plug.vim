@@ -41,6 +41,20 @@ Plug 'maxbrunsfeld/vim-yankstack'
 
 Plug 'tell-k/vim-autopep8'
 
+Plug 'vim-syntastic/syntastic'
+
+Plug 'rust-lang/rust.vim'
+
+" Other plugins require curl
+if executable("curl")
+
+    " Webapi: Dependency of Gist-vim
+    Plug 'mattn/webapi-vim'
+
+    " Gist: Post text to gist.github
+    Plug 'mattn/gist-vim'
+endif
+
 " Color schemes
 Plug 'crucerucalin/peaksea.vim' 
 Plug 'sjl/badwolf'
