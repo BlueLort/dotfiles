@@ -14,14 +14,6 @@
 "call pathogen#infect(s:vim_runtime.'/my_plugins/{}')
 "call pathogen#helptags()
 
-""""""""""""""""""""""""""""""
-" => bufExplorer plugin
-"""""""""""""""""""""""""""""""
-"let g:bufExplorerDefaultHelp=0
-"let g:bufExplorerShowRelativePath=1
-"let g:bufExplorerFindActive=1
-"let g:bufExplorerSortBy='name'
-"map <leader>o :BufExplorer<cr>
 
 
 """"""""""""""""""""""""""""""
@@ -44,17 +36,6 @@ nmap <c-n> <Plug>yankstack_substitute_newer_paste
 " => FZF
 """"""""""""""""""""""""""""""
 nmap <c-f> :FZF<cr>
-
-""""""""""""""""""""""""""""""
-" => CTRL-P
-""""""""""""""""""""""""""""""
-"let g:ctrlp_working_path_mode = 0
-"
-"let g:ctrlp_map = '<c-f>'
-"
-"let g:ctrlp_max_height = 20
-"let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
-
 
 """"""""""""""""""""""""""""""
 " => ZenCoding
@@ -125,6 +106,20 @@ let g:lightline = {
       \ 'separator': { 'left': ' ', 'right': ' ' },
       \ 'subseparator': { 'left': ' ', 'right': ' ' }
       \ }
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FormatCode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call glaive#Install()
+Glaive codefmt clang_format_style="{IndentWidth: 4}"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"let g:syntastic_python_checkers = ['mypy']
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Goyo
