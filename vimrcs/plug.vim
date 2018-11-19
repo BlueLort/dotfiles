@@ -45,6 +45,10 @@ Plug 'vim-syntastic/syntastic'
 
 Plug 'rust-lang/rust.vim'
 
+Plug 'integralist/vim-mypy'
+
+Plug 'yegappan/mru'
+
 
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
