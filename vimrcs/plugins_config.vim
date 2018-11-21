@@ -118,7 +118,7 @@ Glaive codefmt clang_format_style="{IndentWidth: 4}"
 " => Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"let g:syntastic_python_checkers = ['mypy']
+let g:syntastic_python_checkers = ['mypy']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

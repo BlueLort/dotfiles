@@ -88,3 +88,5 @@ fi
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=2'
 
 alias vim="nvim"
+alias python='/usr/bin/python3.7'
+alias pip='/usr/bin/pip3.7'
