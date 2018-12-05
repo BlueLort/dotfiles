@@ -20,7 +20,7 @@
 " => MRU plugin
 """"""""""""""""""""""""""""""
 let MRU_Max_Entries = 400
-map <leader>f :MRU<CR>
+map <leader>m :MRU<CR>
 
 
 """"""""""""""""""""""""""""""
@@ -118,7 +118,24 @@ Glaive codefmt clang_format_style="{IndentWidth: 4}"
 " => Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:syntastic_python_checkers = ['mypy']
+"let g:syntastic_python_checkers = ['mypy']
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_java_checkers = []
+let g:syntastic_cpp_checkers = []
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Deoplete
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"let g:deoplete#enable_at_startup = 1
+"if !exists('g:deoplete#omni#input_patterns')
+  "let g:deoplete#omni#input_patterns = {}
+"endif
+"let g:deoplete#min_pattern_length = 1
+"" Auto close the preview after the completion
+"autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+"" Using tab to cycle through suggestions
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -140,8 +157,12 @@ nnoremap <silent> <leader>d :GitGutterToggle<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>] :YcmCompleter GoTo<cr>
 nmap <leader>[ :YcmCompleter GetDoc<cr>
-nmap <leader>J :lnext<cr>
-nmap <leader>K :lprevious<cr>
+"nmap <leader>J :lnext<cr>
+"nmap <leader>K :lprevious<cr>
+nmap <leader>yf :YcmCompleter FixIt<cr>
+nmap <leader>yg :YcmCompleter GoToReferences<cr>
+nmap <leader>yi :YcmCompleter OrganizeImports<cr>
+nmap <leader>yr :YcmCompleter RefactorRename 
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_always_populate_location_list = 1
