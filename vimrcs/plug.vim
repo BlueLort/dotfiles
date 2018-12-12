@@ -21,8 +21,7 @@ Plug 'Valloric/YouCompleteMe'
   "Plug 'Shougo/deoplete.nvim'
   "Plug 'roxma/nvim-yarp'
   "Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-Plug 'zchee/deoplete-clang'
+"endif Plug 'zchee/deoplete-clang'
 
 Plug 'scrooloose/nerdcommenter'
 
@@ -56,6 +55,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'integralist/vim-mypy'
 
 Plug 'yegappan/mru'
+
+Plug 'kien/rainbow_parentheses.vim'
 
 
 Plug 'google/vim-maktaba'

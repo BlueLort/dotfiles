@@ -121,8 +121,18 @@ Glaive codefmt clang_format_style="{IndentWidth: 4}"
 "let g:syntastic_python_checkers = ['mypy']
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_java_checkers = []
+let g:syntastic_scala_checkers = []
 let g:syntastic_cpp_checkers = []
 
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Rainbow Parentheses
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Deoplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
