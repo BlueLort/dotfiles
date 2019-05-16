@@ -30,6 +30,7 @@ set guioptions-=L
 " Colorscheme
 set background=dark
 colorscheme wombat256mod
+colorscheme molokai_dark
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Turn persistent undo on 
