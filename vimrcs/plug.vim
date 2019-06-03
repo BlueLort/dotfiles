@@ -58,6 +58,7 @@ Plug 'yegappan/mru'
 
 Plug 'kien/rainbow_parentheses.vim'
 
+Plug 'machakann/vim-swap'
 
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
