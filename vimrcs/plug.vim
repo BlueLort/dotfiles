@@ -23,6 +23,8 @@ Plug 'Valloric/YouCompleteMe'
   "Plug 'roxma/vim-hug-neovim-rpc'
 "endif Plug 'zchee/deoplete-clang'
 
+Plug 'vim/killersheep'
+
 Plug 'scrooloose/nerdcommenter'
 
 Plug 'SirVer/ultisnips'
@@ -39,6 +41,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-eunuch'
 
 Plug 'mileszs/ack.vim'
+"Plug 'gabesoft/vim-ags'
+"Plug 'jremmen/vim-ripgrep'
 
 Plug 'junegunn/goyo.vim'
 
@@ -52,13 +56,17 @@ Plug 'vim-syntastic/syntastic'
 
 Plug 'rust-lang/rust.vim'
 
-Plug 'integralist/vim-mypy'
-
 Plug 'yegappan/mru'
 
 Plug 'kien/rainbow_parentheses.vim'
 
 Plug 'machakann/vim-swap'
+
+Plug 'mhinz/vim-startify'
+
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'mattn/emmet-vim'
 
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
@@ -78,5 +86,6 @@ endif
 Plug 'crucerucalin/peaksea.vim' 
 Plug 'sjl/badwolf'
 Plug 'flazz/vim-colorschemes'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
