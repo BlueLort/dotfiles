@@ -72,6 +72,9 @@ Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 
+Plug 'pangloss/vim-javascript'
+Plug 'Quramy/vim-js-pretty-template'
+
 " Other plugins require curl
 if executable("curl")
 
@@ -83,9 +86,9 @@ if executable("curl")
 endif
 
 " Color schemes
+Plug 'arcticicestudio/nord-vim'
 Plug 'crucerucalin/peaksea.vim' 
 Plug 'sjl/badwolf'
 Plug 'flazz/vim-colorschemes'
-Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
