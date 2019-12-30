@@ -31,6 +31,7 @@ set guioptions-=L
 set background=dark
 colorscheme wombat256mod
 colorscheme molokai_dark
+highlight FoldColumn ctermbg=0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Turn persistent undo on 

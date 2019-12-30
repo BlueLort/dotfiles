@@ -30,8 +30,9 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set foldmethod=indent
+set foldcolumn=2
 " Sets how many lines of history VIM has to remember
-set history=500
+set history=5000
 
 " Enable filetype plugins
 filetype plugin on
@@ -113,10 +114,6 @@ set tm=500
 if has("gui_macvim")
     autocmd GUIEnter * set vb t_vb=
 endif
-
-
-" Add a bit extra margin to the left
-set foldcolumn=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
