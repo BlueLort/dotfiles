@@ -14,23 +14,43 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'VundleVim/Vundle.vim'
 
-Plug 'Valloric/YouCompleteMe'
-"if has('nvim')
-  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-  "Plug 'Shougo/deoplete.nvim'
-  "Plug 'roxma/nvim-yarp'
-  "Plug 'roxma/vim-hug-neovim-rpc'
-"endif Plug 'zchee/deoplete-clang'
+"Plug 'Valloric/YouCompleteMe'
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+
+" "Deoplete c++
+" Plug 'zchee/deoplete-clang'
+
+"Deoplete js
+" REQUIRED: Add a syntax file. YATS is the best
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-rls', 'coc-docker', 'coc-snippets']
+" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Plug 'othree/jspc.vim'
+
+"Deoplete rust
+" Plug 'sebastianmarkow/deoplete-rust', { 'do': 'cargo +nightly install racer && git clone --depth=1 https://github.com/rust-lang/rust.git ~/.rust' }
+
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+Plug 'Yggdroot/indentLine'
 
 Plug 'vim/killersheep'
 
 Plug 'scrooloose/nerdcommenter'
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plug 'junegunn/fzf.vim'
 
 Plug 'terryma/vim-multiple-cursors'
 
@@ -54,7 +74,7 @@ Plug 'tell-k/vim-autopep8'
 
 Plug 'vim-syntastic/syntastic'
 
-Plug 'rust-lang/rust.vim'
+"Plug 'rust-lang/rust.vim'
 
 Plug 'yegappan/mru'
 

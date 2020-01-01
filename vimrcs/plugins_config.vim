@@ -44,16 +44,57 @@ nmap <c-f> :FZF<cr>
 let g:user_zen_mode='a'
 
 """"""""""""""""""""""""""""""
+" => cocsnippets
+""""""""""""""""""""""""""""""
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+""""""""""""""""""""""""""""""
+" => Neosnips
+""""""""""""""""""""""""""""""
+" " Plugin key-mappings.
+" " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" " SuperTab like snippets behavior.
+" " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+" "imap <expr><TAB>
+" " \ pumvisible() ? "\<C-n>" :
+" " \ neosnippet#expandable_or_jumpable() ?
+" " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" " For conceal markers.
+" if has('conceal')
+"   set conceallevel=2 concealcursor=niv
+" endif
+
+""""""""""""""""""""""""""""""
 " => UltiSnips
 """"""""""""""""""""""""""""""
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"let g:UltiSnipsExpandTrigger="<c-j>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsEditSplit="vertical"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
@@ -65,7 +106,137 @@ let g:NERDTreeWinSize=35
 map <leader>n :NERDTreeFind<cr>
 map <leader>N :NERDTreeFromBookmark<Space>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NerdCommenter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/'  }  }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 0
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1"
+
+" C-_ maps the C-/
+map <C-_> <Plug>NERDCommenterToggle
+vmap <C-_> <Plug>NERDCommenterToggle
+imap <C-_> <esc> <Plug>NERDCommenterToggle a
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => coc-nvim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Prevents vim from hiding parentethis
+" set conceallevel=0
+
+" Use K to show documentation in preview window
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <leader>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <leader>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <leader>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <leader>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-multiple-cursors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -137,18 +308,30 @@ au Syntax * RainbowParenthesesLoadBraces
 " => Deoplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"let g:deoplete#enable_at_startup = 1
-"if !exists('g:deoplete#omni#input_patterns')
-  "let g:deoplete#omni#input_patterns = {}
-"endif
-"let g:deoplete#min_pattern_length = 1
-"" Auto close the preview after the completion
-"autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-"" Using tab to cycle through suggestions
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" let g:deoplete#enable_at_startup = 1
+" if !exists('g:deoplete#omni#input_patterns')
+"   let g:deoplete#omni#input_patterns = {}
+" endif
+" let g:deoplete#min_pattern_length = 1
+" " Auto close the preview after the completion
+" autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" " Using tab to cycle through suggestions
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
+" " Whether to include documentation strings (if found) in the result data.
+" " Default: 0
+" let g:deoplete#sources#ternjs#docs = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " To use echodoc, you must increase 'cmdheight' value.
+" set cmdheight=2
+" let g:echodoc_enable_at_startup = 1
+
+" let g:racer_experimental_completer = 1
+" let g:racer_insert_paren = 1
+" let g:deoplete#sources#rust#racer_binary = $HOME . '/.cargo/bin/racer'
+" let g:deoplete#sources#rust#rust_source_path = $HOME . '/.rust/src'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Goyo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:goyo_width=100
@@ -165,17 +348,17 @@ nnoremap <silent> <leader>d :GitGutterToggle<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>] :YcmCompleter GoTo<cr>
-nmap <leader>[ :YcmCompleter GetDoc<cr>
-"nmap <leader>J :lnext<cr>
-"nmap <leader>K :lprevious<cr>
-nmap <leader>yf :YcmCompleter FixIt<cr>
-nmap <leader>yg :YcmCompleter GoToReferences<cr>
-nmap <leader>yi :YcmCompleter OrganizeImports<cr>
-nmap <leader>yr :YcmCompleter RefactorRename 
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_always_populate_location_list = 1
+"nmap <leader>] :YcmCompleter GoTo<cr>
+"nmap <leader>[ :YcmCompleter GetDoc<cr>
+""nmap <leader>J :lnext<cr>
+""nmap <leader>K :lprevious<cr>
+"nmap <leader>yf :YcmCompleter FixIt<cr>
+"nmap <leader>yg :YcmCompleter GoToReferences<cr>
+"nmap <leader>yi :YcmCompleter OrganizeImports<cr>
+"nmap <leader>yr :YcmCompleter RefactorRename 
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_always_populate_location_list = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => pangloss/vim-javascript
