@@ -1,8 +1,7 @@
 
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-  export ZSH=~/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
+export TERM=xterm-256color
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -47,10 +46,7 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-plugins=(
-  git,
-  zsh-autosuggestions
-)
+plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -86,7 +82,3 @@ fi
 
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=2'
-
-alias vim="nvim"
-alias python='/usr/bin/python3.7'
-alias pip='/usr/bin/pip3.7'

@@ -6,14 +6,18 @@ prepend_comment() {
 }
 
 prepend_comment ~/.bashrc
-echo source ~/.dotfiles/.bashrc >> ~/.bashrc >/dev/null
+echo source ~/.dotfiles/.bashrc >> ~/.bashrc
 
 prepend_comment ~/.zshrc
-echo source ~/.dotfiles/.zshrc >> ~/.zshrc >/dev/null
+echo source ~/.dotfiles/.zshrc >> ~/.zshrc
 
 prepend_comment ~/.vimrc
-echo source ~/.dotfiles/.vimrc >> ~/.vimrc >/dev/null
+echo source ~/.dotfiles/.vimrc >> ~/.vimrc
 
 mkdir -p ~/.config/nvim
 prepend_comment ~/.config/nvim/init.vim
-echo source ~/.dotfiles/.vimrc >> ~/.config/nvim/init.vim >/dev/null
+echo source ~/.dotfiles/.vimrc >> ~/.config/nvim/init.vim
+
+ln -s ~/.dotfiles/vimrcs/coc-settings.json ~/.config/nvim/coc-settings.json
+
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
