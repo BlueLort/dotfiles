@@ -5,8 +5,8 @@ prepend_comment() {
     fi
 }
 
-prepend_comment ~/.bashrc
-echo source ~/.dotfiles/.bashrc >> ~/.bashrc
+# prepend_comment ~/.bashrc
+# echo source ~/.dotfiles/.bashrc >> ~/.bashrc
 
 prepend_comment ~/.zshrc
 echo source ~/.dotfiles/.zshrc >> ~/.zshrc
