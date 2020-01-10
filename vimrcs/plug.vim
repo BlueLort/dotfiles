@@ -110,5 +110,6 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'crucerucalin/peaksea.vim' 
 Plug 'sjl/badwolf'
 Plug 'flazz/vim-colorschemes'
+Plug 'ayu-theme/ayu-vim' 
 
 call plug#end()
