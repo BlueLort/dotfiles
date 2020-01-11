@@ -20,4 +20,7 @@ echo source ~/.dotfiles/.vimrc >> ~/.config/nvim/init.vim
 
 ln -s ~/.dotfiles/vimrcs/coc-settings.json ~/.config/nvim/coc-settings.json
 
+mkdir -p ~/.config/efm-langserver
+ln -s ~/.dotfiles/efm-config.yaml ~/.config/efm-langserver/config.yaml
+
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
