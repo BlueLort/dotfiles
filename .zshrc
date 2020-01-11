@@ -1,5 +1,5 @@
 
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/go/bin:$PATH
 export ZSH=~/.oh-my-zsh
 export TERM=xterm-256color
 
