@@ -145,6 +145,9 @@ imap <C-_> <esc> <Plug>NERDCommenterToggle a
 " => coc-nvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Make message shown faster and better highlight behaviour
+set updatetime=100
+
 " Prevents vim from hiding parentethis
 " set conceallevel=0
 
