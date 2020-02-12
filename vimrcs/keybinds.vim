@@ -50,14 +50,16 @@ map <leader>f za
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Begin and End of line
-nmap H ^
-nmap L $
-vmap H ^
-vmap L $
+" " Begin and End of line
+" nmap H ^
+" nmap L $
+" vmap H ^
+" vmap L $
+nnoremap H gT
+nnoremap L gt
 
 " Disable highlight when <leader> is pressed
-map <silent> <cr> :noh<cr>
+nnoremap <silent> <cr> :noh<cr><cr>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
