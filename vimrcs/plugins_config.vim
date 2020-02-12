@@ -35,6 +35,8 @@ nmap <c-n> <Plug>yankstack_substitute_newer_paste
 """"""""""""""""""""""""""""""
 " => FZF
 """"""""""""""""""""""""""""""
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
 nmap <c-f> :FZF<cr>
 
 """"""""""""""""""""""""""""""
