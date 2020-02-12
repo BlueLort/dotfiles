@@ -264,6 +264,8 @@ function! VisualSelection(direction, extra_filter) range
 
     if a:direction == 'gv'
         call CmdLine("Ack '" . l:pattern . "' " )
+    elseif a:direction == 'rg'
+        call CmdLine("Rg '" . l:pattern . "' " )
     elseif a:direction == 'replace'
         call CmdLine("%s" . '/'. l:pattern . '/')
     endif
@@ -271,3 +273,4 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
