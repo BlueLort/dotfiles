@@ -98,6 +98,28 @@
             "ignoredRootPaths": [
                 "~"
             ]
+        },
+        "metals": {
+            "command": "metals-vim",
+            "rootPatterns": [
+                "build.sbt"
+            ],
+            "filetypes": [
+                "scala",
+                "sbt"
+            ]
+        },
+        "efm": {
+            "command": "efm-langserver",
+            "args": [],
+            // custom config path
+            // "args": ["-c", "/path/to/your/config.yaml"],
+            "filetypes": [
+                "vim",
+                "eruby",
+                "markdown",
+                "yaml"
+            ]
         }
     }
 }
