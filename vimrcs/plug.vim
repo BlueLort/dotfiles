@@ -30,7 +30,8 @@ Plug 'VundleVim/Vundle.vim'
 " REQUIRED: Add a syntax file. YATS is the best
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-rls', 'coc-docker', 'coc-snippets']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-metals', 'coc-json', 'coc-rls', 'coc-python', 'coc-omnisharp', 'coc-docker', 'coc-snippets']
+
 " Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " Plug 'othree/jspc.vim'
@@ -54,15 +55,17 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'terryma/vim-multiple-cursors'
 
+Plug 'sheerun/vim-polyglot'
+
 Plug 'itchyny/lightline.vim'
 
 Plug 'scrooloose/nerdtree'
 
 Plug 'tpope/vim-eunuch'
 
-Plug 'mileszs/ack.vim'
+" Plug 'mileszs/ack.vim'
 "Plug 'gabesoft/vim-ags'
-"Plug 'jremmen/vim-ripgrep'
+Plug 'jremmen/vim-ripgrep'
 
 Plug 'junegunn/goyo.vim'
 
@@ -73,6 +76,8 @@ Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'tell-k/vim-autopep8'
 
 Plug 'vim-syntastic/syntastic'
+
+Plug 'liuchengxu/vista.vim'
 
 "Plug 'rust-lang/rust.vim'
 
