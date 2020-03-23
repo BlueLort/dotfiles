@@ -1,0 +1,31 @@
+let mapleader=' '
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmode
+set number
+" set relativenumber
+set scrolloff=3
+set history=100000
+
+" clear the highlighted search result
+nnoremap <silent> <cr> :noh<cr><cr>
+
+
+" Integrate with system clipboard
+" set clipboard=unnamedplus,unnamed
+
+" key bindings for quickly moving between windows
+" h left, l right, k up, j down
+nmap <leader>h <c-w>h
+nmap <leader>l <c-w>l
+nmap <leader>k <c-w>k
+nmap <leader>j <c-w>j
+" set clipboard+=ideaput
+
+map <leader>f :action GotoFile<cr>
+map <leader>c :action GotoClass<cr>
+map <leader>s :action GotoSymbol<cr>
+map <leader>a :action GotoAction<cr>
