@@ -38,6 +38,13 @@ nmap <c-n> <Plug>yankstack_substitute_newer_paste
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 nmap <c-f> :FZF<cr>
+" nmap <leader><leader> :Commands<cr>
+
+""""""""""""""""""""""""""""""
+" => FuzzyMenu
+""""""""""""""""""""""""""""""
+nmap <Leader><Leader> <Plug>Fzm
+vmap <Leader><Leader> <Plug>FzmVisual
 
 """"""""""""""""""""""""""""""
 " => ZenCoding
@@ -105,6 +112,7 @@ let g:NERDTreeWinPos = "right"
 let NERDTreeShowHidden=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
+let NERDTreeQuitOnOpen = 1
 map <leader>n :NERDTreeFind<cr>
 map <leader>N :NERDTreeFromBookmark<Space>
 
@@ -152,7 +160,7 @@ set updatetime=100
 " set conceallevel=0
 
 " Use K to show documentation in preview window
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
