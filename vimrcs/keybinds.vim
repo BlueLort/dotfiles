@@ -45,16 +45,13 @@ map <leader>s? z=
 " => Folding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>f za
+nnoremap <expr> <f2> &foldlevel ? 'zM' :'zR'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " Begin and End of line
-" nmap H ^
-" nmap L $
-" vmap H ^
-" vmap L $
+" " Switching tabs
 nnoremap H gT
 nnoremap L gt
 
