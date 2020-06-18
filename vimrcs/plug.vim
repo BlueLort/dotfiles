@@ -14,89 +14,87 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'VundleVim/Vundle.vim'
 
-"Plug 'Valloric/YouCompleteMe'
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-
-" "Deoplete c++
-" Plug 'zchee/deoplete-clang'
-
-"Deoplete js
-" REQUIRED: Add a syntax file. YATS is the best
+" Syntax for Typescript
 Plug 'HerringtonDarkholme/yats.vim'
+
+" Syntax highlighting for multiple langs
+Plug 'sheerun/vim-polyglot' 
+" Language servers
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = ['coc-tsserver', 'coc-metals', 'coc-json', 'coc-rls', 'coc-python', 'coc-omnisharp', 'coc-docker', 'coc-snippets']
 
-" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-" Plug 'othree/jspc.vim'
-
-"Deoplete rust
-" Plug 'sebastianmarkow/deoplete-rust', { 'do': 'cargo +nightly install racer && git clone --depth=1 https://github.com/rust-lang/rust.git ~/.rust' }
-
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
+" INVESTIGATE
+" Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+" Shows indent lines
 Plug 'Yggdroot/indentLine'
 
-Plug 'vim/killersheep'
-
+" For making comments on most filetypes
 Plug 'scrooloose/nerdcommenter'
 
+" Fzf <3
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
+Plug 'laher/fuzzymenu.vim'
 
+" Using multiple cursors on different places in the same time with ctrl n
 Plug 'terryma/vim-multiple-cursors'
 
-Plug 'sheerun/vim-polyglot'
-
+" Cool status line
 Plug 'itchyny/lightline.vim'
 
+" Files navigation
 Plug 'scrooloose/nerdtree'
+" Adding git indications in nerdtree
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
+
+" Vim sugar for the UNIX shell commands
 Plug 'tpope/vim-eunuch'
 
-" Plug 'mileszs/ack.vim'
-"Plug 'gabesoft/vim-ags'
+" Ripgrep for quick string matching
 Plug 'jremmen/vim-ripgrep'
 
+" Fullscreen mode with <leader> z
 Plug 'junegunn/goyo.vim'
 
+" Shows lines that are modified from git
 Plug 'airblade/vim-gitgutter'
 
+" INVESTIGATE
 Plug 'maxbrunsfeld/vim-yankstack'
 
-Plug 'tell-k/vim-autopep8'
-
+" INVESTIGATE
 Plug 'vim-syntastic/syntastic'
 
-Plug 'liuchengxu/vista.vim'
-
-"Plug 'rust-lang/rust.vim'
-
+" Shows most recently used files <leader> m
 Plug 'yegappan/mru'
 
+" INVESTIGATE
 Plug 'kien/rainbow_parentheses.vim'
 
+" INVESTIGATE
 Plug 'machakann/vim-swap'
 
+" Cool intro screen with a cow
 Plug 'mhinz/vim-startify'
 
+" Auto close brackets
 Plug 'jiangmiao/auto-pairs'
 
+" INVESTIGATE
 Plug 'mattn/emmet-vim'
 
+" INVESTIGATE ALL BELOW
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
+" CHECK IF BETTER THAN GOOGLE CODEFMT
+Plug 'sbdchd/neoformat'
 
+" INVESTIGATE
 Plug 'pangloss/vim-javascript'
 Plug 'Quramy/vim-js-pretty-template'
 
@@ -116,5 +114,6 @@ Plug 'crucerucalin/peaksea.vim'
 Plug 'sjl/badwolf'
 Plug 'flazz/vim-colorschemes'
 Plug 'ayu-theme/ayu-vim' 
+Plug 'chrisbra/csv.vim'
 
 call plug#end()
