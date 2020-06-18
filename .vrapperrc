@@ -1,0 +1,45 @@
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set number
+" set relativenumber
+set scrolloff=3
+
+" clear the highlighted search result
+nnoremap <cr> :noh<cr><cr>
+
+" key bindings for quickly moving between windows
+" h left, l right, k up, j down
+nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
+nmap <c-k> <c-w>k
+nmap <c-j> <c-w>j
+
+"  nnoremap <expr> <f2> &foldlevel ? 'zM' :'zR'
+
+nnoremap H gT
+nnoremap L gt
+
+
+eclipseaction	outline			org.eclipse.jdt.ui.edit.text.java.show.outline
+eclipseaction eclipsefindref org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace
+eclipseuiaction eclipsegotoimpl org.eclipse.jdt.ui.edit.text.java.open.implementation
+" show type hierarchy relative to current type
+eclipseuiaction eclipsetypehier org.eclipse.jdt.ui.edit.text.java.open.hierarchy
+" go to type
+eclipseuiaction eclipsegototype org.eclipse.jdt.ui.navigate.open.type
+" show documentation for current symbol
+eclipseuiaction eclipseshowdoc org.eclipse.ui.edit.text.showInformation
+eclipseaction	eclipseoutline			org.eclipse.jdt.ui.edit.text.java.show.outline
+eclipseaction	eclipseresource		org.eclipse.ui.navigate.openResource
+eclipseaction eclipsegotodef org.eclipse.jdt.ui.edit.text.java.open.editor
+
+/* nnoremap gd :eclipsegotodef<cr> */
+nnoremap gr :eclipsefindref<cr>
+nnoremap gI :eclipsegotoimpl<cr>
+nnoremap K   :eclipseshowdoc<cr>
+nnoremap <space>c :eclipsegototype<cr>
+nnoremap <space>f :eclipseresource<cr>
+nnoremap <space>s :eclipseoutline
+
