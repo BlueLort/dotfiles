@@ -16,14 +16,18 @@ nnoremap <silent> <cr> :noh<cr><cr>
 
 " Integrate with system clipboard
 " set clipboard=unnamedplus,unnamed
+" set clipboard+=ideaput
 
 " key bindings for quickly moving between windows
 " h left, l right, k up, j down
-nmap <leader>h <c-w>h
-nmap <leader>l <c-w>l
-nmap <leader>k <c-w>k
-nmap <leader>j <c-w>j
-" set clipboard+=ideaput
+nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
+nmap <c-k> <c-w>k
+nmap <c-j> <c-w>j
+
+nnoremap <silent> H gT
+nnoremap <silent> L gt
+nnoremap <expr> <f2> &foldlevel ? 'zM' :'zR'
 
 map <leader>f :action GotoFile<cr>
 map <leader>c :action GotoClass<cr>
