@@ -38,13 +38,11 @@ nmap <c-n> <Plug>yankstack_substitute_newer_paste
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 nmap <c-f> :FZF<cr>
-" nmap <leader><leader> :Commands<cr>
+nmap <leader><leader> :Commands<cr>
 
 """"""""""""""""""""""""""""""
 " => FuzzyMenu
 """"""""""""""""""""""""""""""
-nmap <Leader><Leader> <Plug>Fzm
-vmap <Leader><Leader> <Plug>FzmVisual
 
 """"""""""""""""""""""""""""""
 " => ZenCoding
