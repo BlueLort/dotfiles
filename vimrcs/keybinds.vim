@@ -67,6 +67,9 @@ map <C-l> <C-W>l
 " Load prev file
 map <leader>e :e#<cr>
 
+" List buffers
+map <leader>b :Buffers<cr>
+
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
