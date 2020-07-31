@@ -14,6 +14,12 @@ echo source ~/.dotfiles/.zshrc >> ~/.zshrc
 prepend_comment ~/.vimrc
 echo source ~/.dotfiles/.vimrc >> ~/.vimrc
 
+prepend_comment ~/.ideavimrc
+echo source ~/.dotfiles/.ideavimrc >> ~/.ideavimrc
+
+prepend_comment ~/.vrapperrc
+echo source ~/.dotfiles/.vrapperrc >> ~/.vrapperrc
+
 mkdir -p ~/.config/nvim
 prepend_comment ~/.config/nvim/init.vim
 echo source ~/.dotfiles/.vimrc >> ~/.config/nvim/init.vim
