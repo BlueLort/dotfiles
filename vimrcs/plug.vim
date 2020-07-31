@@ -37,7 +37,6 @@ Plug 'scrooloose/nerdcommenter'
 " Fzf <3
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
-Plug 'laher/fuzzymenu.vim'
 
 " Using multiple cursors on different places in the same time with ctrl n
 Plug 'terryma/vim-multiple-cursors'
@@ -49,6 +48,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 " Adding git indications in nerdtree
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" Case preserving string replacement in vim
+Plug 'tpope/vim-abolish'
 
 
 " Vim sugar for the UNIX shell commands
