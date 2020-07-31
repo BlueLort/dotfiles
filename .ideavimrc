@@ -33,3 +33,6 @@ map <leader>f :action GotoFile<cr>
 map <leader>c :action GotoClass<cr>
 map <leader>s :action GotoSymbol<cr>
 map <leader>a :action GotoAction<cr>
+
+nnoremap <silent> gr :action FindUsages<cr>
+nnoremap <c-p> :action FileStructurePopup<cr>
