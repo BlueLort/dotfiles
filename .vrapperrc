@@ -35,7 +35,7 @@ eclipseaction	eclipseoutline			org.eclipse.jdt.ui.edit.text.java.show.outline
 eclipseaction	eclipseresource		org.eclipse.ui.navigate.openResource
 eclipseaction eclipsegotodef org.eclipse.jdt.ui.edit.text.java.open.editor
 
-/* nnoremap gd :eclipsegotodef<cr> */
+" nnoremap gd :eclipsegotodef<cr>
 nnoremap gr :eclipsefindref<cr>
 nnoremap gI :eclipsegotoimpl<cr>
 nnoremap K   :eclipseshowdoc<cr>
