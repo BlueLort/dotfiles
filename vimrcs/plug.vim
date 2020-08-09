@@ -86,6 +86,9 @@ Plug 'mhinz/vim-startify'
 " Auto close brackets
 Plug 'jiangmiao/auto-pairs'
 
+" Create directories automatically for files
+Plug 'duggiefresh/vim-easydir'
+
 " INVESTIGATE
 Plug 'mattn/emmet-vim'
 
