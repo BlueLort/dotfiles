@@ -1,5 +1,8 @@
-
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/go/bin:$PATH
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export PATH="$PATH":"$ZOOKEEPER_HOME/bin"
+# export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.npm-global/bin:$PATH
 export ZSH=~/.oh-my-zsh
 export TERM=xterm-256color
 
@@ -7,6 +10,7 @@ export TERM=xterm-256color
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="af-magic"
+# ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -46,10 +50,13 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-plugins=(git zsh-autosuggestions)
+plugins=(z copyfile git zsh-autosuggestions zsh-syntax-highlighting command-not-found)
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}  
 
 source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # User configuration
 
@@ -79,6 +86,12 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vim=nvim
+alias zshrc="nvim ~/.zshrc"
+alias vimrc="nvim ~/.dotfiles/.vimrc"
+alias ports="sudo lsof -i -P -n | grep LISTEN"
+alias port="sudo lsof -i -P -n | grep LISTEN| grep "
 
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=2'
+
