@@ -36,3 +36,7 @@ map <leader>a :action GotoAction<cr>
 
 nnoremap <silent> gr :action FindUsages<cr>
 nnoremap <c-p> :action FileStructurePopup<cr>
+
+
+nnoremap <C-o> :action Back<CR>
+nnoremap <C-i> :action Forward<CR>
