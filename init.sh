@@ -30,3 +30,27 @@ mkdir -p ~/.config/efm-langserver
 ln -s ~/.dotfiles/efm-config.yaml ~/.config/efm-langserver/config.yaml
 
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# Using NPM without sudo
+mkdir -p ~/.npm-global
+npm config set prefix '~/.npm-global'
+
+
+# Using docker without sudo
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+# fix permissions if folder already exists
+if [ -d /home/"$USER"/.docker/ ]
+then
+    sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+    sudo chmod g+rwx "$HOME/.docker" -R
+fi
+docker run hello-world
+
+
+mkdir -p ~/.local/bin
+if [ -f /usr/bin/batcat ]
+then
+    ln -s /usr/bin/batcat ~/.local/bin/bat
+fi
