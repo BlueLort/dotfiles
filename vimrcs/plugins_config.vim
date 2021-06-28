@@ -35,10 +35,27 @@ nmap <c-n> <Plug>yankstack_substitute_newer_paste
 """"""""""""""""""""""""""""""
 " => FZF
 """"""""""""""""""""""""""""""
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 nmap <c-f> :FZF<cr>
 nmap <leader><leader> :Commands<cr>
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:30%' --layout reverse --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+
+" FZF on file contents
+"
+fun! s:openFileAtLocation(result)
+  if len(a:result) == 0
+    return
+  endif
+  let filePos = split(a:result, ':')
+  exec 'edit +' . l:filePos[1] . ' ' . l:filePos[0]
+endfun
+
+nnoremap <silent> <C-g> :call fzf#run(fzf#wrap({
+  \ 'source': 'rg --line-number ''.*''',
+  \ 'options': '--delimiter : --preview "bat --style=plain --color=always {1} -H {2}" --preview-window "+{2}/2"',
+  \ 'sink': function('<sid>openFileAtLocation'),
+  \ }))<CR>
+
 
 """"""""""""""""""""""""""""""
 " => FuzzyMenu
@@ -230,6 +247,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set statusline+=%F
 
 " Using CocList
 " Show all diagnostics

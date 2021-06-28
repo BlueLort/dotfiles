@@ -6,13 +6,6 @@
     "signature.target": "float",
     "suggest.echodocSupport": true,
     "coc.preferences.formatOnType": true,
-    "coc.preferences.formatOnSaveFiletypes": [
-        "go",
-        "javascript",
-        "typescript",
-        "json",
-        "jsonc"
-    ],
     "prettier.printWidth": 160,
     "prettier.singleQuote": true,
     "prettier.eslintIntegration": true,
@@ -97,16 +90,6 @@
             ],
             "ignoredRootPaths": [
                 "~"
-            ]
-        },
-        "metals": {
-            "command": "metals-vim",
-            "rootPatterns": [
-                "build.sbt"
-            ],
-            "filetypes": [
-                "scala",
-                "sbt"
             ]
         },
         "efm": {
