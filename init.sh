@@ -1,3 +1,31 @@
+#!/bin/bash
+
+packages="zsh \
+scala \
+git vim curl \
+gcc clang cmake \
+ack \
+docker docker-compose \
+synapse \
+npm \
+python3-pip python3-tk \
+emacs \
+vim python3-neovim \
+rsync \
+gnome-tweak-tool \
+tlp \
+libreoffice \
+vlc \
+p7zip \
+gnome-system-monitor \
+gparted \
+nodejs \
+snapd \
+openjdk-8-jdk \
+ripgrep \
+google-chrome-stable \
+bat fzf"
+
 prepend_comment() {
     if test -f "$1"; then
         echo "Commenting $1"
@@ -5,8 +33,100 @@ prepend_comment() {
     fi
 }
 
-# prepend_comment ~/.bashrc
-# echo source ~/.dotfiles/.bashrc >> ~/.bashrc
+install_packages_yum() {
+    sudo yum update
+    sudo yum upgrade -y
+    sudo yum install -y $packages
+    sudo yum autoremove
+}
+
+install_packages_dnf() {
+    sudo dnf install -y fedora-workstation-repositories
+    sudo dnf config-manager --set-enabled google-chrome
+    sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+
+    sudo dnf update
+    sudo dnf upgrade -y
+
+    sudo dnf install -y $packages
+    sudo dnf install -y \
+        gcc-go golang-bin \
+        python39 \
+        python2-devel python3-devel \
+        icedtea-web  java-openjdk java-1.8.0-openjdk-devel \
+        the_silver_searcher
+
+    sudo dnf group install "Java Development"
+    sudo dnf autoremove
+}
+
+install_packages_apt() {
+    sudo apt update
+    sudo apt upgrade -y
+    sudo apt install -y $packages
+    sudo apt install -y \
+        gccgo golang \
+        python3.9
+    sudo apt autoremove
+}
+
+install_packages() {
+    echo "Installing Packages..."
+
+    if [ type apt > /dev/null ]; then
+        install_packages_apt
+    elif [type dnf > /dev/null ]; then
+        install_packages_dnf
+    elif [type yum > /dev/null ]; then
+        install_packages_yum
+    else
+        echo "Error: Not handled package manager!"
+        exit 1
+    fi
+    echo "Done Installing Packages..."
+
+    # install rustlang stuff
+    echo "Installing Rust..."
+    curl https://sh.rustup.rs -sSf | sh
+    rustup component add rls rust-analysis rust-src
+    cargo install mdbook
+    echo "Done Installing Rust..."
+
+    # Using NPM without sudo
+    echo "Installing Npm Stuff..."
+    mkdir -p ~/.npm-global
+    npm config set prefix '~/.npm-global'
+
+    # npm packages
+    sudo npm i -g \
+        bash-language-server \
+        gtop
+    echo "Done Installing Npm Stuff..."
+
+
+    # install neovim and all packages
+    echo "Installing Neovim..."
+    curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+    mkdir -p ~/bin
+    mv nvim.appimage ~/bin/nvim
+    chmod u+x ~/bin/nvim
+    nvim +PlugInstall +qall
+    echo "Done Installing Neovim..."
+
+}
+
+# Require sudo at start
+sudo echo "Hello Sudo permissions!"
+sudo echo "LETS ROCK!"
+# if [[ $UID != 0 ]]; then
+#     echo "Please run this script with sudo:"
+#     echo "sudo $0 $*"
+#     exit 1
+# fi
+
+echo "Preparing Source Files..."
+prepend_comment ~/.bashrc
+echo source ~/.dotfiles/.bashrc >> ~/.bashrc
 
 prepend_comment ~/.zshrc
 echo source ~/.dotfiles/.zshrc >> ~/.zshrc
@@ -29,11 +149,34 @@ ln -s ~/.dotfiles/vimrcs/coc-settings.json ~/.config/nvim/coc-settings.json
 mkdir -p ~/.config/efm-langserver
 ln -s ~/.dotfiles/efm-config.yaml ~/.config/efm-langserver/config.yaml
 
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+echo "Done Preparing Source Files..."
 
-# Using NPM without sudo
-mkdir -p ~/.npm-global
-npm config set prefix '~/.npm-global'
+# install oh-my-zsh
+if [ ! -d ~/.oh-my-zsh ]
+then
+    echo "Installing Oh-my-zsh..."
+    sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    echo "Done Installing Oh-my-zsh..."
+fi
+
+
+# set default shell to zsh
+chsh -s /bin/zsh
+
+# configure bat syntax highlighting
+mkdir -p ~/.local/bin
+if [ -f /usr/bin/batcat ]
+then
+    ln -s /usr/bin/batcat ~/.local/bin/bat
+fi
+
+if [ -f /usr/bin/batcat  ]
+then
+    mkdir -p ~/.local/bin
+    ln -s /usr/bin/batcat ~/.local/bin/bat
+fi
 
 
 # Using docker without sudo
@@ -48,9 +191,3 @@ then
 fi
 docker run hello-world
 
-
-mkdir -p ~/.local/bin
-if [ -f /usr/bin/batcat ]
-then
-    ln -s /usr/bin/batcat ~/.local/bin/bat
-fi
