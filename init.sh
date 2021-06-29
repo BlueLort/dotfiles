@@ -56,8 +56,8 @@ install_packages_dnf() {
         icedtea-web  java-openjdk java-1.8.0-openjdk-devel \
         the_silver_searcher
 
-    sudo dnf group install "Java Development"
-    sudo dnf autoremove
+    sudo dnf group install "Java Development" -y
+    sudo dnf autoremove -y
 }
 
 install_packages_apt() {
@@ -67,17 +67,17 @@ install_packages_apt() {
     sudo apt install -y \
         gccgo golang \
         python3.9
-    sudo apt autoremove
+    sudo apt autoremove -y
 }
 
 install_packages() {
     echo "Installing Packages..."
 
-    if [ type apt > /dev/null ]; then
+    if command -v apt &> /dev/null; then
         install_packages_apt
-    elif [type dnf > /dev/null ]; then
+    elif command -v dnf &> /dev/null; then
         install_packages_dnf
-    elif [type yum > /dev/null ]; then
+    elif command -v yum &> /dev/null; then
         install_packages_yum
     else
         echo "Error: Not handled package manager!"
@@ -112,6 +112,7 @@ install_packages() {
     chmod u+x ~/bin/nvim
     nvim +PlugInstall +qall
     echo "Done Installing Neovim..."
+    echo "Enjoy the Coolest Vim Ever..."
 
 }
 
@@ -123,6 +124,8 @@ sudo echo "LETS ROCK!"
 #     echo "sudo $0 $*"
 #     exit 1
 # fi
+
+install_packages
 
 echo "Preparing Source Files..."
 prepend_comment ~/.bashrc

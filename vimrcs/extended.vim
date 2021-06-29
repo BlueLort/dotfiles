@@ -10,14 +10,14 @@
 " Colorscheme
 set termguicolors
 set background=dark
-colorscheme wombat256mod
-colorscheme molokai
-colorscheme molokai_dark
+" colorscheme wombat256mod
+" colorscheme molokai
+" colorscheme molokai_dark
 colorscheme jellybeans
-colorscheme jelleybeans
-colorscheme base
-colorscheme monokain
-colorscheme dracula
+" colorscheme jelleybeans
+" colorscheme base
+" colorscheme monokain
+" colorscheme dracula
 " colorscheme gruvbox
 " colorscheme ayu
 

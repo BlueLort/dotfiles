@@ -31,6 +31,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set foldmethod=indent
 set foldcolumn=2
+set nofoldenable
 " Sets how many lines of history VIM has to remember
 set history=5000
 
