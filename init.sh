@@ -10,7 +10,6 @@ synapse \
 npm \
 python3-pip python3-tk \
 emacs \
-vim python3-neovim \
 rsync \
 gnome-tweak-tool \
 tlp \
@@ -18,10 +17,12 @@ libreoffice \
 vlc \
 p7zip \
 gnome-system-monitor \
+htop \
 gparted \
 nodejs \
 snapd \
 openjdk-8-jdk \
+openjdk-17-jdk \
 ripgrep \
 google-chrome-stable \
 xclip \
@@ -89,7 +90,7 @@ install_packages() {
 	# install rustlang stuff
 	echo "Installing Rust..."
 	curl https://sh.rustup.rs -sSf | sh
-	rustup component add rls rust-analysis rust-src
+	rustup component add rls rust-analysis rust-src rustfmt
 	cargo install mdbook
 	echo "Done Installing Rust..."
 
@@ -105,6 +106,32 @@ install_packages() {
 		diff-so-fancy
 	echo "Done Installing Npm Stuff..."
 
+  # python packages
+  pip3 install pynvim
+
+}
+
+install_nvim() {
+
+  # Prepare config files
+  prepend_comment ~/.vimrc
+  echo source ~/.dotfiles/.vimrc >>~/.vimrc
+
+  prepend_comment ~/.ideavimrc
+  echo source ~/.dotfiles/.ideavimrc >>~/.ideavimrc
+
+  prepend_comment ~/.vrapperrc
+  echo source ~/.dotfiles/.vrapperrc >>~/.vrapperrc
+
+  mkdir -p ~/.config/nvim
+  prepend_comment ~/.config/nvim/init.vim
+  echo source ~/.dotfiles/.vimrc >>~/.config/nvim/init.vim
+
+  ln -s ~/.dotfiles/vimrcs/coc-settings.json ~/.config/nvim/coc-settings.json
+
+  mkdir -p ~/.config/efm-langserver
+  ln -s ~/.dotfiles/efm-config.yaml ~/.config/efm-langserver/config.yaml
+
 	# install neovim and all packages
 	echo "Installing Neovim..."
 	curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
@@ -114,7 +141,37 @@ install_packages() {
 	nvim +PlugInstall +qall
 	echo "Done Installing Neovim..."
 	echo "Enjoy the Coolest Vim Ever..."
+}
 
+install_lvim() {
+
+  yes | bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+
+  mkdir -p ~/.config/lvim/
+  
+  # backup existing configuration
+  if [ -f ~/.config/lvim/config.lua ]; then
+    mv ~/.config/lvim/config.lua{,.old}
+  fi
+
+  # Reference the lua files inside lvim runtime
+  ln -s ~/.dotfiles/lvimrcs ~/.config/lvim/
+  # Use the config file in lvimrcs
+  echo require("lvimrcs/config") > ~/.config/lvim/config.lua
+}
+
+fix_docker_permissions() {
+
+  # Using docker without sudo
+  sudo groupadd docker
+  sudo usermod -aG docker $USER
+  newgrp docker
+  # fix permissions if folder already exists
+  if [ -d /home/"$USER"/.docker/ ]; then
+    sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+    sudo chmod g+rwx "$HOME/.docker" -R
+  fi
+  docker run hello-world
 }
 
 # Require sudo at start
@@ -127,6 +184,8 @@ sudo echo "LETS ROCK!"
 # fi
 
 install_packages
+install_nvim
+install_lvim
 
 echo "Preparing Source Files..."
 prepend_comment ~/.bashrc
@@ -134,24 +193,6 @@ echo source ~/.dotfiles/.bashrc >>~/.bashrc
 
 prepend_comment ~/.zshrc
 echo source ~/.dotfiles/.zshrc >>~/.zshrc
-
-prepend_comment ~/.vimrc
-echo source ~/.dotfiles/.vimrc >>~/.vimrc
-
-prepend_comment ~/.ideavimrc
-echo source ~/.dotfiles/.ideavimrc >>~/.ideavimrc
-
-prepend_comment ~/.vrapperrc
-echo source ~/.dotfiles/.vrapperrc >>~/.vrapperrc
-
-mkdir -p ~/.config/nvim
-prepend_comment ~/.config/nvim/init.vim
-echo source ~/.dotfiles/.vimrc >>~/.config/nvim/init.vim
-
-ln -s ~/.dotfiles/vimrcs/coc-settings.json ~/.config/nvim/coc-settings.json
-
-mkdir -p ~/.config/efm-langserver
-ln -s ~/.dotfiles/efm-config.yaml ~/.config/efm-langserver/config.yaml
 
 echo "Done Preparing Source Files..."
 
@@ -178,13 +219,4 @@ if [ -f /usr/bin/batcat ]; then
 	ln -s /usr/bin/batcat ~/.local/bin/bat
 fi
 
-# Using docker without sudo
-sudo groupadd docker
-sudo usermod -aG docker $USER
-newgrp docker
-# fix permissions if folder already exists
-if [ -d /home/"$USER"/.docker/ ]; then
-	sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
-	sudo chmod g+rwx "$HOME/.docker" -R
-fi
-docker run hello-world
+fix_docker_permissions
