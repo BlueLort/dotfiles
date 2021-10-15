@@ -8,7 +8,6 @@ ack \
 docker docker-compose \
 synapse \
 npm \
-python3-pip python3-tk \
 emacs \
 rsync \
 gnome-tweak-tool \
@@ -21,8 +20,6 @@ htop \
 gparted \
 nodejs \
 snapd \
-openjdk-8-jdk \
-openjdk-17-jdk \
 ripgrep \
 google-chrome-stable \
 xclip \
@@ -55,7 +52,7 @@ install_packages_dnf() {
 		gcc-go golang-bin \
 		python39 \
 		python2-devel python3-devel \
-		icedtea-web java-openjdk java-1.8.0-openjdk-devel \
+		icedtea-web java-1.8.0-openjdk java-latest-openjdk \
 		the_silver_searcher
 
 	sudo dnf group install "Java Development" -y
@@ -68,6 +65,8 @@ install_packages_apt() {
 	sudo apt install -y $packages
 	sudo apt install -y \
 		gccgo golang \
+		openjdk-8-jdk \
+		openjdk-17-jdk \
 		python3.9
 	sudo apt autoremove -y
 }
