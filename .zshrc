@@ -5,6 +5,8 @@ export PATH="$PATH":"$ZOOKEEPER_HOME/bin"
 export PATH=$JAVA_HOME/bin:$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.npm-global/bin:$PATH
 export ZSH=~/.oh-my-zsh
 export TERM=xterm-256color
+export ZSH_HIGHLIGHT_MAXLENGTH=60
+export LUNARVIM_RUNTIME_DIR=~/.config/lvim
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
