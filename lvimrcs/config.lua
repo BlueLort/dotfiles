@@ -3,6 +3,7 @@
 lvim.format_on_save = false
 lvim.lint_on_save = true
 lvim.colorscheme = "onedarker"
+vim.opt.tabstop = 4
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -14,50 +15,47 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
-lvim.builtin.telescope.on_config_done = function()
+lvim.builtin.telescope.on_config_done = function(telescope)
   local actions = require "telescope.actions"
-  -- for input mode
-  lvim.builtin.telescope.mappings.i["<C-j>"] = actions.move_selection_next
-  lvim.builtin.telescope.mappings.i["<C-k>"] = actions.move_selection_previous
-  lvim.builtin.telescope.mappings.i["<C-n>"] = actions.cycle_history_next
-  lvim.builtin.telescope.mappings.i["<C-p>"] = actions.cycle_history_prev
-  -- for normal mode
-  lvim.builtin.telescope.mappings.n["<C-j>"] = actions.move_selection_next
-  lvim.builtin.telescope.mappings.n["<C-k>"] = actions.move_selection_previous
-  lvim.builtin.nvimtree.path_display = { "absolute" }
-  lvim.builtin.nvimtree.hide_dotfiles = 0
-  lvim.builtin.nvimtree.setup.view.width = 60
+  telescope.setup {
+    defaults = {
+      mappings = {
+        -- for input mode
+        i = {
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+          ["<C-n>"] = actions.cycle_history_next,
+          ["<C-p>"] = actions.cycle_history_prev,
+        },
+        n = {
+          -- for normal mode
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+        }
+      }
+    }
+  }
 
 end
 
--- require('extract_selection')
--- function _G.FindSelection()
---   local selection = require('extract_selection').get_visual_selection()
-  -- local escapedSelection = vim.api.nvim_replace_termcodes(selection, true, true, true)
-  -- vim.cmd("let @/ = '" .. escapedSelection .. "'")
-  -- return vim.api.nvim_replace_termcodes(":normal! gg<cr>", true, true, true)
-  -- print(selection)
-  -- return vim.api.nvim_replace_termcodes("<esc>/" .. selection .. "<cr>", true, true, true)
-  -- vim.cmd(vim.api.nvim_replace_termcodes("<esc>/" .. selection .. "<cr>", true, true, true))
-  -- vim.cmd(vim.api.nvim_replace_termcodes("/hamada<cr>", true, true, true))
-  -- print(123)
-  -- vim.api.nvim_set_var('@/', escapedSelection)
-  -- vim.api.nvim_exec("norm n", false)
-  -- print(123)
-  -- vim.api.nvim_command('execute "norm! n"')
--- end
+-- nvimtree customizations
+lvim.builtin.nvimtree.path_display = { "absolute" }
+lvim.builtin.nvimtree.hide_dotfiles = 0
+lvim.builtin.nvimtree.setup.view.width = 60
 
 -- Use which-key to add extra bindings with the leader-key prefix
-lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-lvim.builtin.which_key.mappings["w"] = { "<cmd>w<CR>", "Save" }
-lvim.builtin.which_key.mappings["F"] = { "<cmd>:lua require'telescope.builtin'.live_grep{}<CR>", "Find String" }
-lvim.builtin.which_key.mappings["y"] = { "\"+y", "Copy To System Clipboard" }
-lvim.builtin.which_key.mappings["p"] = { "\"+p", "Paste from System Clipboard" }
-lvim.builtin.which_key.mappings["P"] = { "\"+P", "Paste from System Clipboard" }
-lvim.builtin.which_key.vmappings["n"] = { "<cmd>:lua require'lvimrcs.extract_selection'.FindNextSelection()<CR>", "Find Next Selection" }
-lvim.builtin.which_key.vmappings["N"] = { "<cmd>:lua require'lvimrcs.extract_selection'.FindPreviousSelection()<CR>", "Find Prev Selection" }
-lvim.builtin.which_key.vmappings["r"] = { "<cmd>:lua require'lvimrcs.extract_selection'.ReplaceSelection()<CR>", "Replace Selection" }
-lvim.builtin.which_key.vmappings["g"] = { "<cmd>:lua require'lvimrcs.extract_selection'.GrepSelection()<CR>", "Grep Selection" }
+lvim.builtin.which_key.on_config_done = function()
+  lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+  lvim.builtin.which_key.mappings["w"] = { "<cmd>w<CR>", "Save" }
+  lvim.builtin.which_key.mappings["F"] = { "<cmd>:lua require'telescope.builtin'.live_grep{}<CR>", "Find String" }
+  lvim.builtin.which_key.mappings["y"] = { "\"+y", "Copy To System Clipboard" }
+  lvim.builtin.which_key.mappings["p"] = { "\"+p", "Paste from System Clipboard" }
+  lvim.builtin.which_key.mappings["P"] = { "\"+P", "Paste from System Clipboard" }
+  lvim.builtin.which_key.vmappings["n"] = { "<cmd>:lua require'lvimrcs.extract_selection'.FindNextSelection()<CR>", "Find Next Selection" }
+  lvim.builtin.which_key.vmappings["N"] = { "<cmd>:lua require'lvimrcs.extract_selection'.FindPreviousSelection()<CR>", "Find Prev Selection" }
+  lvim.builtin.which_key.vmappings["r"] = { "<cmd>:lua require'lvimrcs.extract_selection'.ReplaceSelection()<CR>", "Replace Selection" }
+  lvim.builtin.which_key.vmappings["g"] = { "<cmd>:lua require'lvimrcs.extract_selection'.GrepSelection()<CR>", "Grep Selection" }
+end
 
 lvim.builtin.dashboard.custom_header = {
   "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀            ⠀",
