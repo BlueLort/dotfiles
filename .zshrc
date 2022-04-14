@@ -14,6 +14,7 @@ export NVM_DIR="$HOME/.nvm"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_THEME="af-magic"
 # ZSH_THEME="agnoster"
 
@@ -55,7 +56,7 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-plugins=(z copyfile git zsh-autosuggestions zsh-syntax-highlighting command-not-found)
+plugins=(zsh-z copyfile git zsh-autosuggestions zsh-syntax-highlighting command-not-found)
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}  
 
 source $ZSH/oh-my-zsh.sh
@@ -74,7 +75,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='nvim'
+  export EDITOR='lvim'
 fi
 
 # Compilation flags
