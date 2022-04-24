@@ -2,7 +2,7 @@
 -- general
 lvim.format_on_save = false
 lvim.lint_on_save = true
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "lunar"
 vim.opt.tabstop = 4
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -40,7 +40,7 @@ end
 
 -- nvimtree customizations
 lvim.builtin.nvimtree.path_display = { "absolute" }
-lvim.builtin.nvimtree.hide_dotfiles = 0
+lvim.builtin.nvimtree.setup.filters.dotfiles = false
 lvim.builtin.nvimtree.setup.view.width = 60
 
 -- Use which-key to add extra bindings with the leader-key prefix
@@ -55,9 +55,10 @@ lvim.builtin.which_key.on_config_done = function()
   lvim.builtin.which_key.vmappings["N"] = { "<cmd>:lua require'lvimrcs.extract_selection'.FindPreviousSelection()<CR>", "Find Prev Selection" }
   lvim.builtin.which_key.vmappings["r"] = { "<cmd>:lua require'lvimrcs.extract_selection'.ReplaceSelection()<CR>", "Replace Selection" }
   lvim.builtin.which_key.vmappings["g"] = { "<cmd>:lua require'lvimrcs.extract_selection'.GrepSelection()<CR>", "Grep Selection" }
+  lvim.builtin.which_key.vmappings["F"] = { "<cmd>:lua require'lvimrcs.extract_selection'.FindStringSelection()<CR>", "Telescope Selection" }
 end
 
-lvim.builtin.dashboard.custom_header = {
+lvim.builtin.alpha.dashboard.custom_header = {
   "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀            ⠀",
   "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣶⣾⠿⠿⠟⠛⠛⠛⠛⠿⠿⣿⣷⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀            ⠀",
   "  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⡿⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠿⣷⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀            ⠀",
@@ -89,7 +90,7 @@ lvim.builtin.dashboard.custom_header = {
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.dashboard.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
@@ -125,32 +126,37 @@ lvim.builtin.treesitter.highlight.enabled = true
 --   end
 -- end
 
--- set a formatter if you want to override the default lsp one (if it exists)
--- lvim.lang.python.formatters = {
---   {
---     exe = "black",
---     args = {}
---   }
--- }
--- set an additional linter
--- lvim.lang.python.linters = {
---   {
---     exe = "flake8",
---     args = {}
---   }
--- }
+-- set a formatter, this will override the language server formatting capabilities (if it exists)
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  {
+    command = "prettier",
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    filetypes = { "typescript", "typescriptreact" },
+  },
+}
+
+-- set additional linters
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  {
+    command = "eslint_d",
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    filetypes = { "javascript", "javascriptreact" },
+  },
+}
 
 -- Additional Plugins
 lvim.plugins = {
-    {"folke/tokyonight.nvim"}, 
-    {
-        "ray-x/lsp_signature.nvim",
-        config = function() require"lsp_signature".on_attach() end,
-    },
     {"mtdl9/vim-log-highlighting"},
     {
       "EdenEast/nightfox.nvim",
-      config= function() require('nightfox').load("nightfox") end,
+    },
+    {"lunarvim/colorschemes"},
+    {"folke/tokyonight.nvim"}, {
+        "ray-x/lsp_signature.nvim",
+        config = function() require"lsp_signature".on_attach() end,
+        event = "BufRead"
     }
     --{'jremmen/vim-ripgrep'}
 }

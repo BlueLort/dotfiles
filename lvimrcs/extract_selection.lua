@@ -155,7 +155,12 @@ function extract_selection.GrepSelection()
   local selection = extract_selection.get_visual_selection()
   local escaped_selection = escape_all_special_characters(selection)
   escaped_selection = string.gsub(escaped_selection, "%'", "\\'")
-  vim.api.nvim_input(vim.api.nvim_replace_termcodes("<esc>:vimgrep /".. escaped_selection .. "/ **", true, true, true))
+  vim.api.nvim_input(vim.api.nvim_replace_termcodes("<esc>:grep /".. escaped_selection .. "/ **", true, true, true))
+end
+
+function extract_selection.FindStringSelection()
+  local selection = extract_selection.get_visual_selection()
+  require'telescope.builtin'.live_grep{search=selection, default_text=selection}
 end
 
 return extract_selection
