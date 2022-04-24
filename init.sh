@@ -71,7 +71,6 @@ ack \
 docker docker-compose \
 synapse \
 npm \
-emacs \
 rsync \
 gnome-tweak-tool \
 tlp \
@@ -111,6 +110,7 @@ install_packages_dnf() {
 
 	sudo dnf install -y $packages
 	sudo dnf install -y \
+		util-linux-user \
 		gcc-go golang-bin \
 		python39 \
 		python2-devel python3-devel \
@@ -163,12 +163,12 @@ install_npm() {
   nvm install node --lts
 
   # Using NPM without sudo
-  echo "Installing Npm Stuff..."
-  mkdir -p ~/.npm-global
-  npm config set prefix '~/.npm-global'
+  #echo "Installing Npm Stuff..."
+  #mkdir -p ~/.npm-global
+  #npm config set prefix '~/.npm-global'
 
   # Update NPM to latest version
-  npm install -g npm@latest
+  #npm install -g npm@latest
 
   # npm packages
   npm install -g \
