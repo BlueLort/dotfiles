@@ -239,7 +239,7 @@ install_lvim() {
     remove_and_backup ~/.config/lvim/config.lua
   fi
   # Use the config file in lvimrcs
-  echo 'dofile "lvimrcs/config.lua"' > ~/.config/lvim/config.lua
+  echo 'dofile(os.getenv('HOME') .. "/.config/lvim/lvimrcs/config.lua")' > ~/.config/lvim/config.lua
 }
 
 fix_docker_permissions() {
