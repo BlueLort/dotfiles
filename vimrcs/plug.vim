@@ -21,7 +21,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'sheerun/vim-polyglot' 
 " Language servers
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = ['coc-tsserver', 'coc-metals', 'coc-json', 'coc-rls', 'coc-python', 'coc-omnisharp', 'coc-docker', 'coc-snippets']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-rls', 'coc-python', 'coc-omnisharp', 'coc-docker', 'coc-snippets']
 
 " INVESTIGATE
 " Snippets
