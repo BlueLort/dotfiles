@@ -1,8 +1,8 @@
 #!/bin/bash
 
+PARAMS=$1
 
-function usage()
-{
+function usage() {
     echo "Script used to initialize environment with packages, configurations, fixing permissions and other various common procedures for new environments."
     echo ""
     echo "./init.sh"
@@ -87,10 +87,10 @@ google-chrome-stable \
 xclip \
 bat fzf"
 
-prepend_comment() {
+remove_and_backup() {
 	if test -f "$1"; then
-		echo "Commenting $1"
-		awk '{print "# "$0}' $1 >$1
+		echo "Backing up $1"
+		mv $1{,.old_"$(date +%s)"}
 	fi
 }
 
@@ -196,17 +196,17 @@ install_pip() {
 install_nvim() {
 
   # Prepare config files
-  prepend_comment ~/.vimrc
+  remove_and_backup ~/.vimrc
   echo source ~/.dotfiles/.vimrc >>~/.vimrc
 
-  prepend_comment ~/.ideavimrc
+  remove_and_backup ~/.ideavimrc
   echo source ~/.dotfiles/.ideavimrc >>~/.ideavimrc
 
-  prepend_comment ~/.vrapperrc
+  remove_and_backup ~/.vrapperrc
   echo source ~/.dotfiles/.vrapperrc >>~/.vrapperrc
 
   mkdir -p ~/.config/nvim
-  prepend_comment ~/.config/nvim/init.vim
+  remove_and_backup ~/.config/nvim/init.vim
   echo source ~/.dotfiles/.vimrc >>~/.config/nvim/init.vim
 
   ln -s ~/.dotfiles/vimrcs/coc-settings.json ~/.config/nvim/coc-settings.json || echo "Unable to create soft link to nvim:coc-settings.json"
@@ -227,7 +227,7 @@ install_nvim() {
 
 install_lvim() {
 
-  yes | bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+  yes | bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/1.1.3/utils/installer/install.sh)
 
   mkdir -p ~/.config/lvim/
 
@@ -236,10 +236,10 @@ install_lvim() {
 
   # backup existing configuration
   if [ -f ~/.config/lvim/config.lua ]; then
-    mv ~/.config/lvim/config.lua{,.old}
+    remove_and_backup ~/.config/lvim/config.lua
   fi
   # Use the config file in lvimrcs
-  echo 'require("lvimrcs/config")' > ~/.config/lvim/config.lua
+  echo 'dofile "lvimrcs/config.lua"' > ~/.config/lvim/config.lua
 }
 
 fix_docker_permissions() {
@@ -259,10 +259,10 @@ fix_docker_permissions() {
 install_shell() {
 
     echo "Preparing Source Files..."
-    prepend_comment ~/.bashrc
+    remove_and_backup ~/.bashrc
     echo source ~/.dotfiles/.bashrc >>~/.bashrc
 
-    prepend_comment ~/.zshrc
+    remove_and_backup ~/.zshrc
     echo source ~/.dotfiles/.zshrc >>~/.zshrc
 
     echo "Done Preparing Source Files..."
@@ -291,7 +291,8 @@ acquire_sudo_permissions() {
   # fi
 }
 
-if [ -z $1 ]; then
+if [ -z $PARAMS ]; then
+    echo "No arguments are provided: $1"
     usage
     exit 0
 fi
