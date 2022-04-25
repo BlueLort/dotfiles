@@ -92,7 +92,7 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vim=nvim
+alias vim="nvim -u NONE"
 alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.dotfiles/.vimrc"
 alias ports="sudo lsof -i -P -n | grep LISTEN"
