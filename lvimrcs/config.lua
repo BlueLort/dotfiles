@@ -99,7 +99,7 @@ lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = {}
+-- lvim.builtin.treesitter.ensure_installed = {}
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
@@ -133,6 +133,12 @@ lvim.builtin.treesitter.highlight.enabled = true
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   {
+    command = "sqlformat",
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    filetypes = { "sql" },
+    args = {"-r"},
+  },
+  {
     command = "prettier",
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
     filetypes = { "typescript", "typescriptreact" },
@@ -160,7 +166,8 @@ lvim.plugins = {
         "ray-x/lsp_signature.nvim",
         config = function() require"lsp_signature".on_attach() end,
         event = "BufRead"
-    }
+    },
+    {"ellisonleao/gruvbox.nvim"},
     --{'jremmen/vim-ripgrep'}
 }
 

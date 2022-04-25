@@ -84,7 +84,8 @@ snapd \
 ripgrep \
 google-chrome-stable \
 xclip \
-bat fzf"
+bat fzf\
+sqlformat"
 
 remove_and_backup() {
 	if test -f "$1"; then
