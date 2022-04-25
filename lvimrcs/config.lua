@@ -13,7 +13,9 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- lvim.keys.normal_mode["<C-Up>"] = ""
 -- edit a default keymapping
 lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
-
+lvim.keys.normal_mode["<C-_>"] = "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>"
+lvim.keys.insert_mode["<C-_>"] = "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>"
+lvim.keys.visual_mode["<C-_>"] = "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>"
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 lvim.builtin.telescope.on_config_done = function(telescope)
   local actions = require "telescope.actions"
@@ -51,11 +53,12 @@ lvim.builtin.which_key.on_config_done = function()
   lvim.builtin.which_key.mappings["y"] = { "\"+y", "Copy To System Clipboard" }
   lvim.builtin.which_key.mappings["p"] = { "\"+p", "Paste from System Clipboard" }
   lvim.builtin.which_key.mappings["P"] = { "\"+P", "Paste from System Clipboard" }
-  lvim.builtin.which_key.vmappings["n"] = { "<cmd>:lua require'lvimrcs.extract_selection'.FindNextSelection()<CR>", "Find Next Selection" }
-  lvim.builtin.which_key.vmappings["N"] = { "<cmd>:lua require'lvimrcs.extract_selection'.FindPreviousSelection()<CR>", "Find Prev Selection" }
-  lvim.builtin.which_key.vmappings["r"] = { "<cmd>:lua require'lvimrcs.extract_selection'.ReplaceSelection()<CR>", "Replace Selection" }
-  lvim.builtin.which_key.vmappings["g"] = { "<cmd>:lua require'lvimrcs.extract_selection'.GrepSelection()<CR>", "Grep Selection" }
-  lvim.builtin.which_key.vmappings["F"] = { "<cmd>:lua require'lvimrcs.extract_selection'.FindStringSelection()<CR>", "Telescope Selection" }
+  lvim.builtin.which_key.vmappings["n"] = { "<cmd>:lua require'lib.extract_selection'.FindNextSelection()<CR>", "Find Next Selection" }
+  lvim.builtin.which_key.vmappings["N"] = { "<cmd>:lua require'lib.extract_selection'.FindPreviousSelection()<CR>", "Find Prev Selection" }
+  lvim.builtin.which_key.vmappings["r"] = { "<cmd>:lua require'lib.extract_selection'.ReplaceSelection()<CR>", "Replace Selection" }
+  lvim.builtin.which_key.vmappings["g"] = { "<cmd>:lua require'lib.extract_selection'.GrepSelection()<CR>", "Grep Selection" }
+  lvim.builtin.which_key.vmappings["F"] = { "<cmd>:lua require'lib.extract_selection'.FindStringSelection()<CR>", "Telescope Selection" }
+  lvim.builtin.which_key.vmappings["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_blockwise_op(vim.fn.visualmode())<CR>", "Comment Block Selection" }
 end
 
 lvim.builtin.alpha.dashboard.custom_header = {

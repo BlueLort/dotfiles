@@ -231,9 +231,6 @@ install_lvim() {
 
   mkdir -p ~/.config/lvim/
 
-  # Reference the lua files inside lvim runtime
-  ln -s ~/.dotfiles/lvimrcs ~/.config/lvim/ || echo "Unable to create soft link to lvim:lvimrcs"
-
   # backup existing configuration
   if [ -f ~/.config/lvim/config.lua ]; then
     remove_and_backup ~/.config/lvim/config.lua
@@ -241,6 +238,9 @@ install_lvim() {
   # Use the config file in lvimrcs
   # echo 'dofile(os.getenv('HOME') .. "/.config/lvim/lvimrcs/config.lua")' > ~/.config/lvim/config.lua
   ln -s lvimrcs/config.lua ~/.config/lvim/config.lua
+
+  # Reference the lua files inside lvim runtime
+  ln -s ~/.dotfiles/lvimrcs/lib ~/.config/lvim/ || echo "Unable to create soft link to lvim:lvimrcs"
 }
 
 fix_docker_permissions() {
