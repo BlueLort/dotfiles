@@ -97,6 +97,7 @@ alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.dotfiles/.vimrc"
 alias ports="sudo lsof -i -P -n | grep LISTEN"
 alias port="sudo lsof -i -P -n | grep LISTEN| grep "
+alias gstm="git status -suno"
 
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=2'
