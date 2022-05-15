@@ -238,10 +238,10 @@ install_lvim() {
   fi
   # Use the config file in lvimrcs
   # echo 'dofile(os.getenv('HOME') .. "/.config/lvim/lvimrcs/config.lua")' > ~/.config/lvim/config.lua
-  ln -s lvimrcs/config.lua ~/.config/lvim/config.lua
+  ln -s ~/.dotfiles/lvimrcs/config.lua ~/.config/lvim/config.lua
 
   # Reference the lua files inside lvim runtime
-  ln -s ~/.dotfiles/lvimrcs/lib ~/.config/lvim/ || echo "Unable to create soft link to lvim:lvimrcs"
+  ln -s ~/.dotfiles/lvimrcs/lib ~/.config/lvim/lvim/lua/ || echo "Unable to create soft link to lvim:lvimrcs"
 }
 
 fix_docker_permissions() {
