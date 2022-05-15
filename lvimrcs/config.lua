@@ -2,7 +2,7 @@
 -- general
 lvim.format_on_save = false
 lvim.lint_on_save = true
-lvim.colorscheme = "lunar"
+lvim.colorscheme = "nightfox"
 vim.opt.tabstop = 4
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -48,7 +48,6 @@ lvim.builtin.nvimtree.setup.view.width = 60
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.on_config_done = function()
   lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-  lvim.builtin.which_key.mappings["w"] = { "<cmd>w<CR>", "Save" }
   lvim.builtin.which_key.mappings["F"] = { "<cmd>:lua require'telescope.builtin'.live_grep{}<CR>", "Find String" }
   lvim.builtin.which_key.mappings["y"] = { "\"+y", "Copy To System Clipboard" }
   lvim.builtin.which_key.mappings["p"] = { "\"+p", "Paste from System Clipboard" }
@@ -61,6 +60,10 @@ lvim.builtin.which_key.on_config_done = function()
   lvim.builtin.which_key.vmappings["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_blockwise_op(vim.fn.visualmode())<CR>", "Comment Block Selection" }
 end
 
+-- Add custom formatters
+-- TODO: Add these in a single smart command
+vim.api.nvim_input(":command Formatxml % !xmllint -format -recover -<CR>")
+vim.api.nvim_input(":command Formatsql % !sqlformat --reindent my_file.sql --indent_after_first --indent_columns -<CR>")
 lvim.builtin.alpha.dashboard.custom_header = {
   "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀            ⠀",
   "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣶⣾⠿⠿⠟⠛⠛⠛⠛⠿⠿⣿⣷⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀            ⠀",
@@ -94,12 +97,29 @@ lvim.builtin.alpha.dashboard.custom_header = {
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.dashboard.active = true
+lvim.builtin.alpha.active = true
+lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
 
+
 -- if you don't want all the parsers change this to a table of the ones you want
 -- lvim.builtin.treesitter.ensure_installed = {}
+-- lvim.builtin.treesitter.ensure_installed = {
+--   "bash",
+--   "c",
+--   "javascript",
+--   "json",
+--   "lua",
+--   "python",
+--   "typescript",
+--   "css",
+--   "rust",
+--   "java",
+--   "yaml",
+-- }
+
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
