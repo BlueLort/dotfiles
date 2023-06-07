@@ -63,29 +63,29 @@ while [ "$1" != "" ]; do
     shift
 done
 
+# synapse clang\
+# gnome-system-monitor \
+# gnome-tweak-tool \
+# tlp \
+# libreoffice \
+# google-chrome-stable \
+# gparted \
+# snapd \
+# npm \
+# sqlformat \
 packages="zsh \
 scala \
 git vim curl \
-gcc clang cmake \
+gcc cmake \
 ack \
 docker docker-compose \
-synapse \
-npm \
 rsync \
-gnome-tweak-tool \
-tlp \
-libreoffice \
 vlc \
-p7zip \
-gnome-system-monitor \
 htop \
-gparted \
-snapd \
 ripgrep \
-google-chrome-stable \
 xclip \
-bat fzf\
-sqlformat"
+bat fzf \
+"
 
 remove_and_backup() {
 	if test -f "$1"; then
@@ -134,10 +134,20 @@ install_packages_apt() {
 	sudo apt autoremove -y
 }
 
+install_packages_brew() {
+	if [! command -v brew &>/dev/null ]; then
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	fi
+	brew install $packages
+}
+
 install_packages() {
 	echo "Installing Packages..."
 
-	if command -v apt &>/dev/null; then
+	if [ "$(uname)" == "Darwin" ]; then
+		install_packages_brew
+
+	elif command -v apt &>/dev/null; then
 		install_packages_apt
 	elif command -v dnf &>/dev/null; then
 		install_packages_dnf
