@@ -12,6 +12,8 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = ""
 -- edit a default keymapping
+lvim.keys.normal_mode["L"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["H"] = ":BufferLineCyclePrev<CR>"
 lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
 lvim.keys.normal_mode["<C-_>"] = "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>"
 lvim.keys.insert_mode["<C-_>"] = "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>"
@@ -41,6 +43,7 @@ lvim.builtin.telescope.on_config_done = function(telescope)
 end
 
 -- nvimtree customizations
+vim.opt.timeoutlen = 250
 lvim.builtin.nvimtree.path_display = { "absolute" }
 lvim.builtin.nvimtree.setup.filters.dotfiles = false
 lvim.builtin.nvimtree.setup.view.width = 60
@@ -57,7 +60,7 @@ lvim.builtin.which_key.on_config_done = function()
   lvim.builtin.which_key.vmappings["r"] = { "<cmd>:lua require'lib.extract_selection'.ReplaceSelection()<CR>", "Replace Selection" }
   lvim.builtin.which_key.vmappings["g"] = { "<cmd>:lua require'lib.extract_selection'.GrepSelection()<CR>", "Grep Selection" }
   lvim.builtin.which_key.vmappings["F"] = { "<cmd>:lua require'lib.extract_selection'.FindStringSelection()<CR>", "Telescope Selection" }
-  lvim.builtin.which_key.vmappings["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_blockwise_op(vim.fn.visualmode())<CR>", "Comment Block Selection" }
+  -- lvim.builtin.which_key.vmappings["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_blockwise_op(vim.fn.visualmode())<CR>", "Comment Block Selection" }
 end
 
 -- Add custom formatters
