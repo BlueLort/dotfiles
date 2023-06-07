@@ -7,9 +7,6 @@ export ZSH=~/.oh-my-zsh
 export TERM=xterm-256color
 export ZSH_HIGHLIGHT_MAXLENGTH=60
 export LUNARVIM_RUNTIME_DIR=~/.config/lvim
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -56,7 +53,8 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-plugins=(zsh-z copyfile git zsh-autosuggestions zsh-syntax-highlighting command-not-found)
+#export NVM_LAZY=1
+plugins=(zsh-z copyfile git zsh-autosuggestions zsh-syntax-highlighting command-not-found nvm)
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}  
 
 source $ZSH/oh-my-zsh.sh
@@ -93,12 +91,15 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim="nvim -u NONE"
-alias zshrc="nvim ~/.zshrc"
-alias vimrc="nvim ~/.dotfiles/.vimrc"
+alias zshrc="vim ~/.zshrc"
+alias vimrc="vim ~/.dotfiles/.vimrc"
 alias ports="sudo lsof -i -P -n | grep LISTEN"
-alias port="sudo lsof -i -P -n | grep LISTEN| grep "
+alias port="lsof -i -P -n | grep LISTEN| grep "
 alias gstm="git status -suno"
 
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=2'
 
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
