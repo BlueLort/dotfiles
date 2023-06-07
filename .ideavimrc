@@ -1,10 +1,16 @@
+
 let mapleader=' '
+
+" Use system clipboard
+set clipboard+=unnamed
+set clipboard+=ideaput
 
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 set showmode
+set ideamarks
 set number
 " set relativenumber
 set scrolloff=3
@@ -33,11 +39,27 @@ map <leader>f :action GotoFile<cr>
 map <leader>c :action GotoClass<cr>
 map <leader>s :action GotoSymbol<cr>
 map <leader>a :action GotoAction<cr>
+map <leader>R :action RenameElement<cr>
 
 nnoremap <silent> gr :action FindUsages<cr>
 nnoremap <silent> gi :action GotoImplementation<cr>
 nnoremap <c-p> :action FileStructurePopup<cr>
+nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
 
 
-nnoremap <C-o> :action Back<CR>
-nnoremap <C-i> :action Forward<CR>
+
+
+" IdeaVim Handlers
+sethandler <C-D> a:vim
+sethandler <C-H> a:vim
+sethandler <C-I> a:ide
+sethandler <C-K> a:ide
+sethandler <C-L> a:vim
+sethandler <C-N> a:vim
+sethandler <C-O> a:ide
+sethandler <C-p> a:vim
+sethandler <C-R> a:vim
+sethandler <C-S> a:vim
+sethandler <C-T> a:vim
+sethandler <C-V> a:vim
+sethandler <C-W> a:vim
