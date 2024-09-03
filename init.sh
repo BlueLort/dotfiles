@@ -74,17 +74,17 @@ done
 # npm \
 # sqlformat \
 packages="zsh \
-scala \
-git vim curl \
+git vim curl fuse\
 gcc cmake \
 ack \
-docker docker-compose \
 rsync \
-vlc \
 htop \
+bat fzf \
+docker docker-compose \
+vlc \
+scala \
 ripgrep \
 xclip \
-bat fzf \
 "
 
 remove_and_backup() {
@@ -208,8 +208,6 @@ install_nvim() {
 
   # Prepare config files
   remove_and_backup ~/.vimrc
-  echo source ~/.dotfiles/.vimrc >>~/.vimrc
-
   remove_and_backup ~/.ideavimrc
   echo source ~/.dotfiles/.ideavimrc >>~/.ideavimrc
 
@@ -269,16 +267,6 @@ fix_docker_permissions() {
 }
 
 install_shell() {
-
-    echo "Preparing Source Files..."
-    remove_and_backup ~/.bashrc
-    echo source ~/.dotfiles/.bashrc >>~/.bashrc
-
-    remove_and_backup ~/.zshrc
-    echo source ~/.dotfiles/.zshrc >>~/.zshrc
-
-    echo "Done Preparing Source Files..."
-
     # install oh-my-zsh
     if [ ! -d ~/.oh-my-zsh ]; then
         echo "Installing Oh-my-zsh..."
@@ -289,11 +277,19 @@ install_shell() {
         echo "Done Installing Oh-my-zsh..."
     fi
 
+    remove_and_backup ~/.bashrc
+    echo source ~/.dotfiles/.bashrc >>~/.bashrc
+    
+    remove_and_backup ~/.zshrc
+    echo source ~/.dotfiles/.zshrc >>~/.zshrc
+
+    echo "Done Preparing Source Files..."
     # set default shell to zsh
     chsh -s /bin/zsh
 }
 
 acquire_sudo_permissions() {
+  export PIP_BREAK_SYSTEM_PACKAGES=1
   sudo echo "Hello Sudo permissions!"
   sudo echo "LETS ROCK!"
   # if [[ $UID != 0 ]]; then
