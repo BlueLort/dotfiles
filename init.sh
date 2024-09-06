@@ -74,7 +74,7 @@ done
 # npm \
 # sqlformat \
 packages="zsh \
-git vim curl fuse\
+git vim curl fuse \
 gcc cmake \
 ack \
 rsync \
