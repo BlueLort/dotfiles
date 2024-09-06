@@ -43,7 +43,7 @@ while [ "$1" != "" ]; do
             INSTALL_DOCKER=true
             ;;
         -r | --rust)
-            INSTALL_rust=true
+            INSTALL_RUST=true
             ;;
         -n | --npm)
             INSTALL_NPM=true
